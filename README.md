@@ -7,9 +7,9 @@ Aansluitingen:
   - RX: Real time output verwerking
   - TX: UART Output
   
-  UART: 
-    Wanneer er een hoge input is wordt de response time 100-300ms.
-    Wanneer er een lage input is wordt de response time 100ms.
+  UART:
+  - Wanneer er een hoge input is wordt de response time 100-300ms.
+  - Wanneer er een lage input is wordt de response time 100ms.
     
 Libraries:
   /
