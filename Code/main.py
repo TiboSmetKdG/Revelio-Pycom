@@ -1,23 +1,31 @@
-import pycom
+import wifi
+import lora
+import ultrasonic
+import adafruit
 import time
-from machine import UART
 
-uart = UART(1)
-uart.init(9600, bits=8, parity=None, stop=1, timeout_chars=100, pins=('P3', 'P4'))
+#   ------------------------------------
+# | Uncomment the method you want to use |
+#   ------------------------------------
+
+# Connect and send data with LoRa
+# lora.connect()
+# ultasonic.read_uart()
+
+# while True:
+    # ultasonic.read_uart()
+    # distance = ultasonic.getDistance()
+    # lora.send(distance)
+    # print(distance)
+    # time.sleep(10)
+
+# Connect and send data with WiFi
+wifi.connectHome()
+ultasonic.read_uart()
 
 while True:
-    header_bytes = uart.read(1)
-    while(header_bytes != b'\xff'):
-        header_bytes=uart.read(1)
-
-    data_high = int(uart.read(1)[0])
-    data_low = int(uart.read(1)[0])
-    data_sum = int(uart.read(1)[0])
-
-    sum = data_high + data_low
-    if(sum == data_sum - 1):
-        distance = data_high * 256 + data_low
-        distance2 = (distance)/10
-        disTxt = '{:6.2f}'.format(distance)
-        disTxt2 = '{:6.2f}'.format(distance2)
-        print("De afstand is" + disTxt2 + " cm" + "of" + disTxt + " mm")
+    ultrasonic.read_uart()
+    distance = ultrasonic.getDistance()
+    adafruit.sendDataWifi(distance)
+    print(distance)
+    time.sleep(10)
