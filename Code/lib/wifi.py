@@ -23,7 +23,7 @@ def connectHome():
     wlan = WLAN(mode=WLAN.STA)
     pycom.heartbeat(False)
 
-    wlan.connect(ssid='Pretty fly for a wifi', auth=(WLAN.WPA2, 'discobar'))
+    wlan.connect(ssid='***', auth=(WLAN.WPA2, '***'))
 
     while not wlan.isconnected():
         time.sleep(2)
